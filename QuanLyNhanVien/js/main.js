@@ -5,25 +5,6 @@ var dsnv = [];
 var dataJson = localStorage.getItem("dsnv");
 var arrayNV = JSON.parse(dataJson);
 
-// ? tạo class NhanVien
-// ? duyệt mảng => convert object => object từ class
-
-// for (var i = 0; i < arrayNV.length; i++) {
-//   var data = arrayNV[i];
-//   var nv = new NhanVien(
-//     arrayNV[i].tk,
-//     arrayNV[i].name,
-//     arrayNV[i].email,
-//     arrayNV[i].pass,
-//     arrayNV[i].date,
-//     arrayNV[i].luong,
-//     arrayNV[i].chucVu,
-//     arrayNV[i].gioLam
-//   );
-//   dsnv.push(nv);
-// }
-// renderNv();
-
 // ! THÊM NV
 document.getElementById("btnThemNV").onclick = function () {
   var nv = layForm();
@@ -56,43 +37,63 @@ function xoaNv(id) {
   renderNv();
 }
 
+// ...
+
 // ! SỬA NV
 function suaNv(id) {
-  // ? tìm vị trí
-  var index;
-  for (var i = 0; i < dsnv.length; i++) {
-    if ((dsnv[i].tk = id)) {
-      index = i;
-    }
-  }
-  // ? từ index => lấy ra ds đc click
-  var nv = dsnv[index];
-  console.log(nv);
+  // Tìm vị trí của nhân viên cần sửa
+  var index = dsnv.findIndex(function (nv) {
+    return nv.tk == id;
+  });
 
-  // ? show thông tin lên form
-  document.getElementById("tknv").value = nv.tk;
-  document.getElementById("name").value = nv.name;
-  document.getElementById("email").value = nm.email;
-  document.getElementById("password").value = nv.pass;
-  document.getElementById("datepicker").value = nv.date;
-  document.getElementById("luongCB").value = nv.luong;
-  document.getElementById("chucVu").value = nv.chucVu;
-  document.getElementById("gioLam").value = nv.gioLam;
+  // Kiểm tra xem có tồn tại nhân viên không
+  if (index != -1) {
+    var nv = dsnv[index];
+
+    // Hiển thị thông tin nhân viên lên form
+    document.getElementById("tknv").value = nv.tk;
+    document.getElementById("name").value = nv.name;
+    document.getElementById("email").value = nv.email;
+    document.getElementById("password").value = nv.pass;
+    document.getElementById("datepicker").value = nv.date;
+    document.getElementById("luongCB").value = nv.luong;
+    document.getElementById("chucVu").value = nv.chucVu;
+    document.getElementById("gioLam").value = nv.gioLam;
+
+    // Hiển thị nút "Cập nhật" và ẩn nút "Thêm người dùng"
+    document.getElementById("btnCapNhat").style.display = "inline-block";
+    document.getElementById("btnThemNV").style.display = "none";
+  } else {
+    alert("Không tìm thấy nhân viên có tài khoản : " + id);
+  }
 }
 
 // ! CẬP NHẬT NV
-document.getElementById("btnCapNhat").onclick=function() {
+document.getElementById("btnCapNhat").onclick = function () {
   var nv = layForm();
-  // ? tìm vị trí
-  var index;
-  for (var i = 0; i < dsnv.length; i++) {
-    if ((dsnv[i].tk = nv.tk)) {
-      index = i;
-    }
+
+  // Tìm vị trí của nhân viên cần cập nhật
+  var index = dsnv.findIndex(function (item) {
+    return item.tk == nv.tk;
+  });
+
+  // Kiểm tra xem có tồn tại nhân viên không
+  if (index != -1) {
+    // Cập nhật thông tin nhân viên
+    dsnv[index] = nv;
+
+    // Render lại danh sách nhân viên
+    renderNv();
+
+    // Ẩn nút "Cập nhật" và hiển thị nút "Thêm người dùng"
+    document.getElementById("btnCapNhat").style.display = "none";
+    document.getElementById("btnThemNV").style.display = "inline-block";
+
+    // Đặt lại giá trị của các trường input trong form  về trạng thái ban đầu
+    resetForm();
+  } else {
+    alert("Không tìm thấy nhân viên có tài khoản : " + nv.tk);
   }
-  // ? cập nhật data tại vị trí index
-  dsnv[index] = nv;
-  renderNv();
-}
+};
 
-
+// ...
