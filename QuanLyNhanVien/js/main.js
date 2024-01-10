@@ -8,21 +8,21 @@ var arrayNV = JSON.parse(dataJson);
 // ? tạo class NhanVien
 // ? duyệt mảng => convert object => object từ class
 
-for (var i = 0; i < arrayNV.length; i++) {
-  var data = arrayNV[i];
-  var nv = new NhanVien(
-    arrayNV[i].tk,
-    arrayNV[i].name,
-    arrayNV[i].email,
-    arrayNV[i].pass,
-    arrayNV[i].date,
-    arrayNV[i].luong,
-    arrayNV[i].chucVu,
-    arrayNV[i].gioLam
-  );
-  dsnv.push(nv);
-}
-renderNv();
+// for (var i = 0; i < arrayNV.length; i++) {
+//   var data = arrayNV[i];
+//   var nv = new NhanVien(
+//     arrayNV[i].tk,
+//     arrayNV[i].name,
+//     arrayNV[i].email,
+//     arrayNV[i].pass,
+//     arrayNV[i].date,
+//     arrayNV[i].luong,
+//     arrayNV[i].chucVu,
+//     arrayNV[i].gioLam
+//   );
+//   dsnv.push(nv);
+// }
+// renderNv();
 
 // ! THÊM NV
 document.getElementById("btnThemNV").onclick = function () {
