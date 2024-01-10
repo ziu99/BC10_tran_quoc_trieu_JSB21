@@ -5,6 +5,25 @@ var dsnv = [];
 var dataJson = localStorage.getItem("dsnv");
 var arrayNV = JSON.parse(dataJson);
 
+// ? tạo class NhanVien
+// ? duyệt mảng => convert object => object từ class
+
+for (var i = 0; i < arrayNV.length; i++) {
+  var data = arrayNV[i];
+  var nv = new NhanVien(
+    arrayNV[i].tk,
+    arrayNV[i].name,
+    arrayNV[i].email,
+    arrayNV[i].pass,
+    arrayNV[i].date,
+    arrayNV[i].luong,
+    arrayNV[i].chucVu,
+    arrayNV[i].gioLam
+  );
+  dsnv.push(nv);
+}
+renderNv();
+
 // ! THÊM NV
 document.getElementById("btnThemNV").onclick = function () {
   var nv = layForm();
@@ -17,8 +36,6 @@ document.getElementById("btnThemNV").onclick = function () {
   // ? render lại layout khi thêm thành công
   renderNv();
 };
-
-
 
 // ! XOÁ NV
 function xoaNv(id) {
@@ -39,8 +56,6 @@ function xoaNv(id) {
   renderNv();
 }
 
-
-
 // ! SỬA NV
 function suaNv(id) {
   // ? tìm vị trí
@@ -55,35 +70,29 @@ function suaNv(id) {
   console.log(nv);
 
   // ? show thông tin lên form
-   document.getElementById("tknv").value=nv.tk;
-   document.getElementById("name").value=nv.name;
-   document.getElementById("email").value=nm.email;
-  document.getElementById("password").value=nv.pass;
-   document.getElementById("datepicker").value=nv.date;
-  document.getElementById("luongCB").value=nv.luong;
-  document.getElementById("chucVu").value =nv.chucVu;
-   document.getElementById("gioLam").value =nv.gioLam;
+  document.getElementById("tknv").value = nv.tk;
+  document.getElementById("name").value = nv.name;
+  document.getElementById("email").value = nm.email;
+  document.getElementById("password").value = nv.pass;
+  document.getElementById("datepicker").value = nv.date;
+  document.getElementById("luongCB").value = nv.luong;
+  document.getElementById("chucVu").value = nv.chucVu;
+  document.getElementById("gioLam").value = nv.gioLam;
 }
 
 // ! CẬP NHẬT NV
-function capNhatNv(){
+document.getElementById("btnCapNhat").onclick=function() {
   var nv = layForm();
-// ? tìm vị trí
+  // ? tìm vị trí
   var index;
   for (var i = 0; i < dsnv.length; i++) {
-    if ((dssv[i].tk = nv.tk)) {
+    if ((dsnv[i].tk = nv.tk)) {
       index = i;
     }
   }
-// ? cập nhật data tại vị trí index
-dsnv[index]=nv;
-renderNv();
-
+  // ? cập nhật data tại vị trí index
+  dsnv[index] = nv;
+  renderNv();
 }
-
-
-// ! TÌM NV
-
-
 
 

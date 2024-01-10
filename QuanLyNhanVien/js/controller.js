@@ -17,7 +17,9 @@ function renderNv() {
         >xoá</button>
         <button
         onclick="suaNv('${data.tk}')"
-        class='btn btn-info'        
+        class='btn btn-info' 
+        data-toggle="modal"
+				data-target="#myModal"       
     >sửa</button>
         </td> 
         </tr>`;
@@ -53,19 +55,15 @@ function layForm() {
     },
 
     tinhXepLoai: function () {
-      if (chucVu==1 && gioLam < 160) {
+      if (chucVu == 1 && gioLam < 160) {
         return "NV Trung Bình";
-      }
-      else if (chucVu==1 && 160 <= gioLam && gioLam < 176) {
+      } else if (chucVu == 1 && 160 <= gioLam && gioLam < 176) {
         return "NV Khá";
-      }
-      else if (chucVu==1 && 176 <= gioLam && gioLam < 192) {
+      } else if (chucVu == 1 && 176 <= gioLam && gioLam < 192) {
         return "NV Giỏi";
-      }
-      else if (chucVu==1 && gioLam >= 192) {
+      } else if (chucVu == 1 && gioLam >= 192) {
         return "NV Xuât Sắc";
-      }
-      else{
+      } else {
         return " ";
       }
     },
@@ -86,5 +84,3 @@ function layForm() {
 
   return nv;
 }
-
-
