@@ -60,9 +60,7 @@ function suaNv(id) {
     document.getElementById("chucVu").value = nv.chucVu;
     document.getElementById("gioLam").value = nv.gioLam;
 
-    // Hiển thị nút "Cập nhật" và ẩn nút "Thêm người dùng"
-    document.getElementById("btnCapNhat").style.display = "inline-block";
-    document.getElementById("btnThemNV").style.display = "none";
+  
   } else {
     alert("Không tìm thấy nhân viên có tài khoản : " + id);
   }
@@ -84,10 +82,6 @@ document.getElementById("btnCapNhat").onclick = function () {
 
     // Render lại danh sách nhân viên
     renderNv();
-
-    // Ẩn nút "Cập nhật" và hiển thị nút "Thêm người dùng"
-    document.getElementById("btnCapNhat").style.display = "none";
-    document.getElementById("btnThemNV").style.display = "inline-block";
 
     // Đặt lại giá trị của các trường input trong form  về trạng thái ban đầu
     resetForm();
